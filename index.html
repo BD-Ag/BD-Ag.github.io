@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+<meta name="description" content="Leveraging Temporal Distribution Shifts for Rice Disease Detection. A cross-year benchmark on Bangladeshi rice field images: train on 2021-2025, test only on held-out 2026, across ResNet50, EfficientNet-B0, DenseNet121 and DINOv2 under full and partial fine-tuning, with 10 seeds and seed-matched paired hypothesis tests.">
+<meta property="og:title" content="Leveraging Temporal Distribution Shifts for Rice Disease Detection"/>
+<meta property="og:description" content="Across all eight model/strategy configurations, future-year macro-F1 falls 43.91 points below same-period validation and less than half of validation performance is retained."/>
+<meta property="og:image" content="static/images/overview.png" />
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta name="twitter:title" content="Leveraging Temporal Distribution Shifts for Rice Disease Detection">
+<meta name="twitter:description" content="Cross-year evaluation of rice disease recognition on Bangladeshi field images: a 43.91-point generalization gap and only 48.28% retention.">
+<meta name="twitter:image" content="static/images/overview.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- TODO: once this page is deployed, add <link rel="canonical">, og:url, and
+     citation_pdf_url / citation_abstract_html_url with the live absolute URLs. -->
+
+<!-- Google Scholar / citation metadata -->
+<meta name="citation_title" content="Leveraging Temporal Distribution Shifts for Rice Disease Detection">
+<meta name="citation_author" content="Islam, Md. Radoan">
+<meta name="citation_author" content="Chakraborty, Sayantan">
+<meta name="citation_author" content="Bhattacharjee, Ushashi">
+<meta name="citation_author" content="Roy, Tirtho">
+<meta name="citation_publication_date" content="2026">
+<meta name="citation_conference_title" content="3rd IEEE International Conference on Computing, Applications and Systems">
+  <title>Leveraging Temporal Distribution Shifts for Rice Disease Detection</title>
+  <link rel="icon" type="image/x-icon" href="static/images/overview.png">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+  rel="stylesheet">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+</head>
+<body>
+
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">Leveraging Temporal Distribution Shifts for Rice Disease Detection</h1>
+            <div class="is-size-5 publication-authors">
+              <div class="author-list">
+                <span class="author-block">
+                  <a href="https://github.com/radoan11103" target="_blank"><b>Md. Radoan Islam</b></a><sup style="color:#1f77b4;">1,&#42;</sup>,
+                </span>
+                <span class="author-block">
+                  <a href="https://www.linkedin.com/in/sayantan-chakraborty-1416p/" target="_blank"><b>Sayantan Chakraborty</b></a><sup style="color:#1f77b4;">2,&#42;</sup>,
+                </span>
+                <span class="author-block">
+                  <a href="https://www.linkedin.com/in/ushashi-bhattacharjee/" target="_blank">Ushashi Bhattacharjee</a><sup>3</sup>,
+                </span>
+                <span class="author-block">
+                  <a href="https://www.linkedin.com/in/tirtho-roy-apon/" target="_blank"><b>Tirtho Roy</b></a><sup style="color:#1f77b4;">3,&dagger;</sup>
+                </span>
+              </div>
+
+              <div class="is-size-5 publication-authors">
+                <p><sup>1</sup> Patuakhali Science and Technology University, Bangladesh</p>
+                <p><sup>2</sup> University of Dhaka, Bangladesh</p>
+                <p><sup>3</sup> Iowa State University, USA</p>
+                <p class="eql-cntrb"><i><sup style="color:#1f77b4;">&#42;</sup>These authors contributed equally</i></p>
+                <p><i><sup style="color:#1f77b4;">&dagger;</sup>Corresponding author: <a href="mailto:tirtho@iastate.edu">tirtho@iastate.edu</a></i></p>
+                <p class="venue-accepted"><span class="tag-accepted">Accepted</span> <a href="https://www.compasconf.org/" target="_blank">3rd IEEE International Conference on Computing, Applications and Systems 2026</a> &mdash; IEEE Xplore</p>
+              </div>
+
+                  <div class="column has-text-centered">
+                    <div class="publication-links">
+                      <!-- Paper PDF -->
+ <span class="link-block">
+  <a href="static/paper/paper.pdf"
+     target="_blank"
+     class="external-link button is-normal is-rounded is-dark">
+    <span class="icon">
+      <i class="fas fa-file-pdf"></i>
+    </span>
+    <span>Paper</span>
+  </a>
+</span>
+
+      <!-- IEEE Xplore -->
+      <!-- TODO: point href at the IEEE Xplore record once it is indexed -->
+      <span class="link-block">
+          <a href="#" target="_blank"
+              class="external-link button is-normal is-rounded is-dark">
+              <span class="icon">
+                  <i class="ai ai-ieee"></i>
+              </span>
+              <span>IEEE Xplore (soon)</span>
+          </a>
+      </span>
+
+      <!-- Code -->
+      <span class="link-block">
+          <a href="https://github.com/radoan11103/rice-disease-recognition" target="_blank"
+              class="external-link button is-normal is-rounded is-dark">
+              <span class="icon">
+                  <i class="fab fa-github"></i>
+              </span>
+              <span>Code</span>
+          </a>
+      </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Teaser image -->
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+       <h2 class="title is-3 has-text-centered">The cross-year evaluation framework</h2>
+      <img src="static/images/overview.png" alt="Cross-year evaluation framework: rice disease images published 2021 to 2025 form the training and validation pool, models are trained under full and partial fine-tuning, and evaluation happens only on a held-out 2026 partition">
+      <h2 class="subtitle has-text-centered">
+      Ten public Bangladesh-focused rice disease collections are merged into one four-class corpus, then split <b>chronologically</b> rather than randomly. Everything from <b>2021&ndash;2025</b> becomes the training and validation pool; <b>2026</b> is held out entirely and never touches training, tuning, or model selection. Four backbones &mdash; <b>ResNet50</b>, <b>DenseNet121</b>, <b>EfficientNet-B0</b>, and <b>DINOv2 ViT-S/14</b> &mdash; are each trained under <b>full</b> and <b>partial</b> fine-tuning with <b>10 seeds</b>, giving 80 runs on identical partitions. The question is not which model scores highest in-distribution, but how much of that score survives the following season.
+      </h2>
+    </div>
+  </div>
+</section>
+<!-- End teaser image -->
+
+
+<!-- Abstract -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Rice diseases threaten agricultural yield and food security in Bangladesh. Most automated detection studies train and test on images from a single time period, so temporal generalization goes unmeasured. We evaluate deep learning models trained on Bangladeshi rice field images from 2021 to 2025 and tested only on held-out 2026 data. Four architectures were compared under full and partial transfer learning: ResNet50, EfficientNet-B0, DenseNet121, and DINOv2. Two claims were specified before testing and assessed with seed-matched paired tests, assumption checks, Holm correction, effect sizes, and confidence intervals. The shift is visible in the images themselves, which lose <b>52.06%</b> of their structural similarity across the partition boundary against a <b>9.29%</b> within-partition control. Over 10 seeds, future-year macro-F1 fell below validation macro-F1 in all eight model/strategy configurations (Holm-adjusted <i>p</i>&nbsp;&lt;&nbsp;3&times;10<sup>&minus;13</sup>). The mean generalization gap was <b>43.91 macro-F1 points</b> (95% CI: 39.42&ndash;48.39) and mean retention only <b>48.28%</b>. Fine-tuning strategy mattered as well, but its effect depended on the architecture. Full fine-tuning was better for the three CNNs and partial fine-tuning for DINOv2, a heterogeneity that was itself significant (Friedman &chi;<sup>2</sup>&nbsp;=&nbsp;28.08, <i>p</i>&nbsp;=&nbsp;3.49&times;10<sup>&minus;6</sup>) and echoed in how far each backbone's attention was reorganized. DINOv2 with partial fine-tuning gave the best future-year macro-F1 even though it did not attain the best validation score.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Abstract -->
+
+
+<!-- Guiding question -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Why evaluate across years?</h2>
+        <div class="content has-text-justified">
+          <p>
+            A rice disease classifier is only useful if it still works after it is deployed &mdash; which means next season, on images nobody has seen. Yet almost every published system is trained and tested on a randomly partitioned pool from a single period, so training and test images share the same lighting, growth stage, camera equipment, and stage of disease progression. That number is an in-distribution number. It says nothing about the following year.
+          </p>
+          <p>
+            We remove that confound by splitting on time instead of at random. Images published 2021&ndash;2025 form the training and validation pool; the 2026 partition is held out entirely. Nothing from 2026 enters training, hyperparameter tuning, or checkpoint selection. Every architecture and fine-tuning strategy is then trained with the <b>same 10 seeds</b>, so every comparison is paired at the seed level and seed-to-seed noise is removed rather than absorbed into the estimate.
+          </p>
+          <p>
+            Two claims were fixed <i>before</i> any testing. The <b>primary claim</b> is that temporal shift significantly reduces recognition performance, tested one-sided as validation versus future-year macro-F1. The <b>secondary claim</b> is that fine-tuning strategy significantly affects cross-year performance and that the better strategy depends on the architecture &mdash; tested two-sided, so the data, not our expectations, decide the direction.
+          </p>
+          <p>
+            One caveat is stated in the paper and repeated here: most public Bangladeshi rice datasets do not report verified acquisition dates, so <b>publication year is used as a chronological proxy</b>. The results should be read as cross-year evaluation based on dataset release chronology, not on verified image acquisition chronology.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Guiding question -->
+
+
+<!-- Contributions -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Contributions</h2>
+        <div class="content has-text-left">
+          <ol>
+            <li><b>A temporal evaluation framework for rice disease detection</b> &mdash; chronologically separated training (2021&ndash;2025) and future-year testing (2026), so that distribution shift is measured rather than assumed away by random splitting.</li>
+            <li><b>Four pretrained architectures under two transfer strategies</b> &mdash; ResNet50, DenseNet121, EfficientNet-B0, and DINOv2 ViT-S/14 under full and partial fine-tuning, quantifying both the input-level shift and the cross-year performance loss.</li>
+            <li><b>The first cross-year study on multi-year Bangladeshi field data</b> &mdash; to the best of our knowledge, no prior work investigates temporal generalization for rice disease recognition on Bangladeshi multi-year corpora.</li>
+            <li><b>A seed-matched statistical protocol</b> &mdash; pre-specified claims, paired hypothesis tests with assumption checks, effect sizes, confidence intervals, and Holm multiplicity correction, showing that the optimal fine-tuning strategy is architecture-dependent rather than universal.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Contributions -->
+
+
+<!-- Dataset -->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Ten sources, six years, four classes</h2>
+      <div class="columns is-centered">
+        <div class="column is-four-fifths">
+          <div class="table-container">
+            <table class="table is-fullwidth is-narrow is-hoverable" style="font-size: 0.85rem;">
+              <thead>
+                <tr>
+                  <th>Year</th>
+                  <th class="has-text-right">Raw images</th>
+                  <th class="has-text-right">Used images</th>
+                  <th>Split role</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>2021</td><td class="has-text-right">606</td><td class="has-text-right">606</td><td>Training / validation</td></tr>
+                <tr><td>2022</td><td class="has-text-right">493</td><td class="has-text-right">493</td><td>Training / validation</td></tr>
+                <tr><td>2023</td><td class="has-text-right">729</td><td class="has-text-right">729</td><td>Training / validation</td></tr>
+                <tr><td>2024</td><td class="has-text-right">4,397</td><td class="has-text-right">4,397</td><td>Training / validation</td></tr>
+                <tr><td>2025</td><td class="has-text-right">2,458</td><td class="has-text-right">2,458</td><td>Training / validation</td></tr>
+                <tr class="has-background-white-bis"><td><b>2021&ndash;2025 total</b></td><td class="has-text-right"><b>8,683</b></td><td class="has-text-right"><b>8,683</b></td><td>Train 7,380 / Val 1,303</td></tr>
+                <tr><td>2026</td><td class="has-text-right">7,823</td><td class="has-text-right">4,000</td><td>Test (1,000 per class)</td></tr>
+                <tr class="has-background-white-ter">
+                  <td><b>Grand total</b></td><td class="has-text-right"><b>16,506</b></td><td class="has-text-right"><b>12,683</b></td><td>&mdash;</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="description has-text-centered">
+            Year-wise distribution of the merged corpus. Ten publicly available Bangladesh-focused collections from Kaggle and Mendeley Data were combined, reviewed by hand, and reduced to the four classes with enough multi-year coverage: <b>rice blast</b>, <b>brown spot</b>, <b>rice tungro</b>, and <b>healthy</b>. Coverage is uneven &mdash; 2021 contributes no healthy images and 2022&ndash;2023 no tungro &mdash; so those years contribute only to the classes they cover; the imbalance is handled with class-weighted loss and augmentation. The historical pool is split 85/15 with stratification, and the 2026 test set is drawn by stratified sampling at 1,000 images per class for a balanced 4,000-image evaluation.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Dataset -->
+
+
+<!-- Method figure -->
+<section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-3 has-text-centered">One pipeline, eight conditions, eighty runs</h2>
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <div class="publication-image">
+            <img src="static/images/method.png" alt="Methodology overview: preprocessing pipeline, the four model architectures, and the full versus partial fine-tuning strategies evaluated across the historical 2021-2025 and future-year 2026 partitions" style="width: 88%; height: auto;">
+          </div>
+          <p class="description">
+            Every image passes through the same preprocessing: EXIF orientation correction, RGB conversion, edge-preserving bilateral denoising, CLAHE contrast enhancement on the L-channel in LAB space, a center crop that keeps the leaf region, and resizing to 224&nbsp;&times;&nbsp;224. Training adds mild augmentation (flip, rotation, colour jitter, affine); validation and test images receive none, so their evaluation is deterministic. Each backbone starts from ImageNet-pretrained or self-supervised weights with the classification head replaced for four classes. <b>Full</b> fine-tuning updates all parameters at LR&nbsp;10<sup>&minus;4</sup>; <b>partial</b> fine-tuning freezes the backbone and trains only the head at LR&nbsp;10<sup>&minus;3</sup>. AdamW, cosine annealing, class-weighted cross-entropy with label smoothing 0.1, early stopping on validation macro-F1. Four architectures &times; two strategies &times; 10 seeds = <b>80 runs</b> under identical partitions, preprocessing, and evaluation settings.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Method figure -->
+
+
+<!-- Input-level shift -->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">The shift is in the images, not just the scores</h2>
+      <div class="columns is-centered">
+        <div class="column is-four-fifths">
+          <div class="table-container">
+            <table class="table is-fullwidth is-narrow is-hoverable" style="font-size: 0.85rem;">
+              <thead>
+                <tr>
+                  <th>Pair set</th>
+                  <th class="has-text-centered">SSIM</th>
+                  <th class="has-text-centered">PSNR (dB)</th>
+                  <th class="has-text-centered">SSIM reduction</th>
+                  <th class="has-text-centered">PSNR reduction</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Train&ndash;Train <i>(within historical)</i></td><td class="has-text-centered">0.872 &plusmn; 0.061</td><td class="has-text-centered">31.84 &plusmn; 3.42</td><td class="has-text-centered">&mdash; <i>(reference)</i></td><td class="has-text-centered">&mdash; <i>(reference)</i></td></tr>
+                <tr><td>Test&ndash;Test <i>(within-partition control)</i></td><td class="has-text-centered">0.791 &plusmn; 0.078</td><td class="has-text-centered">28.57 &plusmn; 3.16</td><td class="has-text-centered">9.29%</td><td class="has-text-centered">10.27%</td></tr>
+                <tr class="has-background-white-bis"><td><b>Train&ndash;Test <i>(across the boundary)</i></b></td><td class="has-text-centered"><b>0.418 &plusmn; 0.113</b></td><td class="has-text-centered"><b>18.92 &plusmn; 4.08</b></td><td class="has-text-centered"><b>52.06%</b></td><td class="has-text-centered"><b>40.58%</b></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="description has-text-centered">
+            Full-reference similarity computed on the <i>preprocessed</i> 224&nbsp;&times;&nbsp;224 images, so resolution, orientation, and contrast normalisation cannot explain the outcome. SSIM responds to structure and contrast, PSNR to raw intensity, so the pair separates a change in scene structure from a change in exposure and colour. The <b>within-partition control settles the interpretation</b>: Test&ndash;Test pairs, which cross no temporal boundary, lose only 9.29% of SSIM, while Train&ndash;Test pairs lose 52.06% &mdash; more than five times as much. Ordinary variation between two different images accounts for a small part of the dissimilarity; the partition boundary accounts for the rest. Both metrics depend on how pairs are formed, so they are read descriptively, as a relative comparison across the three sets.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Input-level shift -->
+
+
+<!-- Main results table -->
+<section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Main results: what survives the year boundary</h2>
+      <div class="columns is-centered">
+        <div class="column is-full">
+          <div class="table-container">
+            <table class="table is-fullwidth is-narrow is-hoverable" style="font-size: 0.85rem;">
+              <thead>
+                <tr>
+                  <th>Condition</th>
+                  <th class="has-text-centered">Val macro-F1</th>
+                  <th class="has-text-centered">2026 test macro-F1</th>
+                  <th class="has-text-centered">Gap</th>
+                  <th class="has-text-centered">Retention (%)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>ResNet50 full</td><td class="has-text-centered">93.02 &plusmn; 0.34</td><td class="has-text-centered">43.82 &plusmn; 1.44</td><td class="has-text-centered">49.20</td><td class="has-text-centered">47.11</td></tr>
+                <tr><td>ResNet50 partial</td><td class="has-text-centered">80.83 &plusmn; 0.35</td><td class="has-text-centered">39.24 &plusmn; 0.49</td><td class="has-text-centered">41.59</td><td class="has-text-centered">48.54</td></tr>
+                <tr><td>DenseNet121 full</td><td class="has-text-centered">92.86 &plusmn; 0.25</td><td class="has-text-centered">44.94 &plusmn; 1.85</td><td class="has-text-centered">47.92</td><td class="has-text-centered">48.40</td></tr>
+                <tr><td>DenseNet121 partial</td><td class="has-text-centered">74.12 &plusmn; 0.58</td><td class="has-text-centered">36.48 &plusmn; 1.61</td><td class="has-text-centered">37.64</td><td class="has-text-centered">49.22</td></tr>
+                <tr><td>EfficientNet-B0 full</td><td class="has-text-centered">92.30 &plusmn; 0.30</td><td class="has-text-centered">44.64 &plusmn; 1.04</td><td class="has-text-centered">47.65</td><td class="has-text-centered">48.37</td></tr>
+                <tr><td>EfficientNet-B0 partial</td><td class="has-text-centered">78.96 &plusmn; 0.39</td><td class="has-text-centered">33.32 &plusmn; 0.72</td><td class="has-text-centered">45.63</td><td class="has-text-centered">42.21</td></tr>
+                <tr><td>DINOv2 full</td><td class="has-text-centered">85.04 &plusmn; 0.99</td><td class="has-text-centered">38.03 &plusmn; 1.03</td><td class="has-text-centered">47.01</td><td class="has-text-centered">44.73</td></tr>
+                <tr class="has-background-white-bis"><td><b>DINOv2 partial</b></td><td class="has-text-centered">81.74 &plusmn; 0.64</td><td class="has-text-centered"><b>47.11 &plusmn; 1.32</b></td><td class="has-text-centered"><b>34.63</b></td><td class="has-text-centered"><b>57.65</b></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="description has-text-centered">
+            All eight conditions over 10 seed-matched runs (mean&nbsp;&plusmn;&nbsp;SD). <b>Gap</b> is validation minus 2026 test macro-F1; <b>retention</b> is the percentage of validation macro-F1 kept on the future year. Future performance falls below validation in every single condition. <b>DINOv2 partial</b> reaches the best future-year macro-F1 (47.11, 95% CI: 46.17&ndash;48.06), the smallest gap, and the best retention &mdash; yet ranks only <i>fifth of eight</i> on validation macro-F1. ResNet50 full takes the opposite position: best on validation, worst on the gap. Across the 80 runs, validation macro-F1 tracks test macro-F1 only loosely (Pearson <i>r</i>&nbsp;=&nbsp;0.641), and across the eight condition means the association is not significant at all (<i>r</i>&nbsp;=&nbsp;0.666, <i>p</i>&nbsp;=&nbsp;0.0714). <b>Ranking models on same-period validation would not have found the most temporally stable configuration.</b>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Main results table -->
+
+
+<!-- Hypothesis tests -->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-3 has-text-centered">Two pre-specified claims, tested</h2>
+      <div class="columns is-centered">
+        <div class="column is-full">
+          <div class="table-container">
+            <table class="table is-fullwidth is-narrow is-hoverable" style="font-size: 0.8rem;">
+              <thead>
+                <tr>
+                  <th>Comparison</th>
+                  <th class="has-text-centered"><i>n</i></th>
+                  <th class="has-text-centered">Mean diff.</th>
+                  <th class="has-text-centered">95% CI</th>
+                  <th class="has-text-centered">Shapiro&ndash;Wilk <i>p</i></th>
+                  <th class="has-text-centered">Selected test</th>
+                  <th class="has-text-centered">Holm <i>p</i></th>
+                  <th class="has-text-centered">Cohen's <i>d<sub>z</sub></i></th>
+                  <th>Decision</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="has-background-white-ter"><td colspan="9"><i>Primary claim: validation &minus; future-year test macro-F1 (one-sided)</i></td></tr>
+                <tr><td>ResNet50 full</td><td class="has-text-centered">10</td><td class="has-text-centered">49.20</td><td class="has-text-centered">[48.19, 50.22]</td><td class="has-text-centered">0.185</td><td class="has-text-centered">paired <i>t</i></td><td class="has-text-centered">4.50&times;10<sup>&minus;15</sup></td><td class="has-text-centered">34.6</td><td>Reject <i>H</i><sub>0</sub></td></tr>
+                <tr><td>ResNet50 partial</td><td class="has-text-centered">10</td><td class="has-text-centered">41.59</td><td class="has-text-centered">[41.18, 42.01]</td><td class="has-text-centered">0.740</td><td class="has-text-centered">paired <i>t</i></td><td class="has-text-centered">1.22&times;10<sup>&minus;17</sup></td><td class="has-text-centered">72.1</td><td>Reject <i>H</i><sub>0</sub></td></tr>
+                <tr><td>DenseNet121 full</td><td class="has-text-centered">10</td><td class="has-text-centered">47.92</td><td class="has-text-centered">[46.56, 49.28]</td><td class="has-text-centered">0.991</td><td class="has-text-centered">paired <i>t</i></td><td class="has-text-centered">5.84&times;10<sup>&minus;14</sup></td><td class="has-text-centered">25.2</td><td>Reject <i>H</i><sub>0</sub></td></tr>
+                <tr><td>DenseNet121 partial</td><td class="has-text-centered">10</td><td class="has-text-centered">37.64</td><td class="has-text-centered">[36.37, 38.91]</td><td class="has-text-centered">0.217</td><td class="has-text-centered">paired <i>t</i></td><td class="has-text-centered">1.87&times;10<sup>&minus;13</sup></td><td class="has-text-centered">21.2</td><td>Reject <i>H</i><sub>0</sub></td></tr>
+                <tr><td>EfficientNet-B0 full</td><td class="has-text-centered">10</td><td class="has-text-centered">47.65</td><td class="has-text-centered">[46.92, 48.39]</td><td class="has-text-centered">0.734</td><td class="has-text-centered">paired <i>t</i></td><td class="has-text-centered">5.40&times;10<sup>&minus;16</sup></td><td class="has-text-centered">46.4</td><td>Reject <i>H</i><sub>0</sub></td></tr>
+                <tr><td>EfficientNet-B0 partial</td><td class="has-text-centered">10</td><td class="has-text-centered">45.63</td><td class="has-text-centered">[44.93, 46.33]</td><td class="has-text-centered">0.307</td><td class="has-text-centered">paired <i>t</i></td><td class="has-text-centered">5.40&times;10<sup>&minus;16</sup></td><td class="has-text-centered">46.6</td><td>Reject <i>H</i><sub>0</sub></td></tr>
+                <tr><td>DINOv2 full</td><td class="has-text-centered">10</td><td class="has-text-centered">47.01</td><td class="has-text-centered">[46.12, 47.90]</td><td class="has-text-centered">0.729</td><td class="has-text-centered">paired <i>t</i></td><td class="has-text-centered">2.58&times;10<sup>&minus;15</sup></td><td class="has-text-centered">37.7</td><td>Reject <i>H</i><sub>0</sub></td></tr>
+                <tr><td>DINOv2 partial</td><td class="has-text-centered">10</td><td class="has-text-centered">34.63</td><td class="has-text-centered">[33.33, 35.92]</td><td class="has-text-centered">0.265</td><td class="has-text-centered">paired <i>t</i></td><td class="has-text-centered">2.28&times;10<sup>&minus;13</sup></td><td class="has-text-centered">19.2</td><td>Reject <i>H</i><sub>0</sub></td></tr>
+                <tr class="has-background-white-bis"><td><b>All conditions (macro-F1)</b></td><td class="has-text-centered">8</td><td class="has-text-centered"><b>43.91</b></td><td class="has-text-centered">[39.42, 48.39]</td><td class="has-text-centered">0.137</td><td class="has-text-centered">paired <i>t</i></td><td class="has-text-centered">3.56&times;10<sup>&minus;8</sup></td><td class="has-text-centered">8.18</td><td><b>Reject <i>H</i><sub>0</sub></b></td></tr>
+                <tr><td><b>All conditions (accuracy)</b></td><td class="has-text-centered">8</td><td class="has-text-centered">42.13</td><td class="has-text-centered">[37.86, 46.40]</td><td class="has-text-centered">0.150</td><td class="has-text-centered">paired <i>t</i></td><td class="has-text-centered">3.39&times;10<sup>&minus;8</sup></td><td class="has-text-centered">8.24</td><td>Reject <i>H</i><sub>0</sub></td></tr>
+
+                <tr class="has-background-white-ter"><td colspan="9"><i>Secondary claim: full &minus; partial future-year test macro-F1 (two-sided)</i></td></tr>
+                <tr><td>ResNet50</td><td class="has-text-centered">10</td><td class="has-text-centered">+4.59</td><td class="has-text-centered">[3.45, 5.72]</td><td class="has-text-centered">0.044</td><td class="has-text-centered">Wilcoxon</td><td class="has-text-centered">0.0020</td><td class="has-text-centered">+2.90</td><td>Reject <i>H</i><sub>0</sub> (favours <b>Full</b>)</td></tr>
+                <tr><td>DenseNet121</td><td class="has-text-centered">10</td><td class="has-text-centered">+8.46</td><td class="has-text-centered">[6.47, 10.45]</td><td class="has-text-centered">0.708</td><td class="has-text-centered">paired <i>t</i></td><td class="has-text-centered">1.00&times;10<sup>&minus;5</sup></td><td class="has-text-centered">+3.04</td><td>Reject <i>H</i><sub>0</sub> (favours <b>Full</b>)</td></tr>
+                <tr><td>EfficientNet-B0</td><td class="has-text-centered">10</td><td class="has-text-centered">+11.32</td><td class="has-text-centered">[10.35, 12.29]</td><td class="has-text-centered">0.552</td><td class="has-text-centered">paired <i>t</i></td><td class="has-text-centered">3.00&times;10<sup>&minus;9</sup></td><td class="has-text-centered">+8.38</td><td>Reject <i>H</i><sub>0</sub> (favours <b>Full</b>)</td></tr>
+                <tr class="has-background-white-bis"><td>DINOv2</td><td class="has-text-centered">10</td><td class="has-text-centered">&minus;9.08</td><td class="has-text-centered">[&minus;10.07, &minus;8.08]</td><td class="has-text-centered">0.198</td><td class="has-text-centered">paired <i>t</i></td><td class="has-text-centered">2.07&times;10<sup>&minus;8</sup></td><td class="has-text-centered">&minus;6.52</td><td>Reject <i>H</i><sub>0</sub> (favours <b>Partial</b>)</td></tr>
+                <tr><td><b>Architecture &times; strategy</b></td><td class="has-text-centered">10</td><td class="has-text-centered">&mdash;</td><td class="has-text-centered">&mdash;</td><td class="has-text-centered">&mdash;</td><td class="has-text-centered">Friedman</td><td class="has-text-centered">3.49&times;10<sup>&minus;6</sup></td><td class="has-text-centered"><i>W</i>&nbsp;=&nbsp;0.936</td><td>Effect is <b>heterogeneous</b></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="description has-text-centered">
+            Every comparison is paired on seed-matched runs; the test is chosen by a Shapiro&ndash;Wilk check on the paired differences (&alpha;&nbsp;=&nbsp;0.05), and <i>p</i>-values are Holm-adjusted within each family. The exact Wilcoxon signed-rank test agrees everywhere on the primary claim, returning <i>p</i>&nbsp;=&nbsp;0.00098 with <i>z</i>&nbsp;=&nbsp;2.803 in all eight conditions &mdash; the smallest value obtainable at <i>n</i>&nbsp;=&nbsp;10, because all ten seed-level differences carry the same sign. The study-level rows treat the eight condition means as units of analysis, so the 80 non-independent runs are not pseudoreplicated. Four separate tests cannot show that an effect <i>differs between</i> architectures, so the last row tests that directly by comparing each architecture's seed-matched full-minus-partial difference vector.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Hypothesis tests -->
+
+
+<!-- Confusion -->
+<section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-3 has-text-centered">Where the loss actually happens</h2>
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <div class="publication-image">
+            <img src="static/images/confusion.png" alt="Row-normalised mean confusion matrix for DINOv2 partial fine-tuning on the 2026 test set, averaged over 10 seeds, showing rice blast predominantly absorbed by brown spot" style="width: 78%; height: auto;">
+          </div>
+          <p class="description">
+            Row-normalised mean confusion matrix for the best configuration, DINOv2 partial, on the 2026 test set averaged over 10 seeds. Support is balanced at 1,000 images per class, but the model does not treat the classes alike: healthy leaves come through well (F1&nbsp;=&nbsp;80.61&nbsp;&plusmn;&nbsp;1.18) while <b>rice blast collapses</b> (14.78&nbsp;&plusmn;&nbsp;4.12), with brown spot and rice tungro between them (46.41 and 46.65). The damage is concentrated and asymmetric: brown spot absorbs <b>72.73%</b> of rice blast samples, leaving blast recall at just <b>9.17%</b>, and pulls in 49.6% of rice tungro as well &mdash; while brown spot itself is recovered at 70.2%. Under the 2026 shift these models over-predict brown spot and swallow the lesion classes that resemble it.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Confusion -->
+
+
+<!-- Grad-CAM -->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-3 has-text-centered">Why the two families disagree about fine-tuning</h2>
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <div class="publication-image">
+            <img src="static/images/gradcam.png" alt="Grad-CAM maps for DINOv2 under partial and full fine-tuning on two future-year 2026 rice blast samples, showing lesion-localised attention under partial fine-tuning and background attention under full fine-tuning" style="width: 78%; height: auto;">
+          </div>
+          <p class="description">
+            Grad-CAM on two 2026 rice blast samples. <b>Top:</b> partial fine-tuning settles on the lesion and classifies correctly, while full fine-tuning activates on the vegetation around it and answers brown spot. <b>Bottom:</b> both strategies look mostly at background and both answer brown spot &mdash; the dominant error above. Attention that slides off the lesion and onto the canopy goes together with the collapse in blast recall.
+          </p>
+          <div class="table-container" style="margin-top: 1.5rem;">
+            <table class="table is-fullwidth is-narrow is-hoverable" style="font-size: 0.85rem;">
+              <thead>
+                <tr>
+                  <th>Architecture</th>
+                  <th class="has-text-centered">Partial&ndash;full map correlation</th>
+                  <th class="has-text-centered">IoU of top-activated regions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>DenseNet121</td><td class="has-text-centered">0.460 &plusmn; 0.027</td><td class="has-text-centered">0.335&ndash;0.402</td></tr>
+                <tr><td>ResNet50</td><td class="has-text-centered">0.421 &plusmn; 0.032</td><td class="has-text-centered">0.335&ndash;0.402</td></tr>
+                <tr><td>EfficientNet-B0</td><td class="has-text-centered">0.308 &plusmn; 0.031</td><td class="has-text-centered">0.335&ndash;0.402</td></tr>
+                <tr class="has-background-white-bis"><td><b>DINOv2</b></td><td class="has-text-centered"><b>0.018 &plusmn; 0.056</b></td><td class="has-text-centered"><b>0.178 &plusmn; 0.020</b></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="description">
+            All models saw the same 20 held-out 2026 images, five per class; values were averaged within each seed and compared across architectures with paired tests. In the CNNs, moving from partial to full fine-tuning leaves much of the saliency structure in place. In DINOv2 the two maps are <b>unrelated</b>, and the overlap of their most activated regions is smaller to match. Paired tests separate DINOv2 from every CNN on both measures (correlation differences &minus;0.289 to &minus;0.442, all Holm-adjusted <i>p</i>&nbsp;&le;&nbsp;5.5&times;10<sup>&minus;8</sup>; IoU differences &minus;0.157 to &minus;0.224, all <i>p</i>&nbsp;&le;&nbsp;1.8&times;10<sup>&minus;8</sup>), and the effect is again heterogeneous (&chi;<sup>2</sup>&nbsp;=&nbsp;28.08, <i>W</i>&nbsp;=&nbsp;0.936). Full fine-tuning <i>refines</i> what a CNN already attends to, but <i>reorganises</i> what DINOv2 attends to &mdash; consistent with the reading that updating all parameters adapts an ImageNet-pretrained CNN to the domain while displacing a general-purpose self-supervised representation that would otherwise carry across years. <b>The evidence is associative</b>: it shows that attention moves much further for DINOv2, not that this movement causes the loss in accuracy.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Grad-CAM -->
+
+
+<!-- Per-class -->
+<section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Rice blast is the hard class everywhere</h2>
+      <div class="columns is-centered">
+        <div class="column is-full">
+          <div class="table-container">
+            <table class="table is-fullwidth is-narrow is-hoverable" style="font-size: 0.85rem;">
+              <thead>
+                <tr>
+                  <th>Condition</th>
+                  <th class="has-text-centered">Brown spot</th>
+                  <th class="has-text-centered">Healthy</th>
+                  <th class="has-text-centered">Rice blast</th>
+                  <th class="has-text-centered">Rice tungro</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>ResNet50 full</td><td class="has-text-centered">45.90 &plusmn; 1.24</td><td class="has-text-centered">80.44 &plusmn; 2.27</td><td class="has-text-centered">10.64 &plusmn; 3.70</td><td class="has-text-centered">38.32 &plusmn; 2.45</td></tr>
+                <tr><td>ResNet50 partial</td><td class="has-text-centered">38.24 &plusmn; 0.73</td><td class="has-text-centered">67.09 &plusmn; 1.11</td><td class="has-text-centered">11.95 &plusmn; 1.42</td><td class="has-text-centered">39.66 &plusmn; 1.53</td></tr>
+                <tr><td>DenseNet121 full</td><td class="has-text-centered">45.97 &plusmn; 1.01</td><td class="has-text-centered">82.27 &plusmn; 2.44</td><td class="has-text-centered">11.86 &plusmn; 4.58</td><td class="has-text-centered">39.65 &plusmn; 3.46</td></tr>
+                <tr><td>DenseNet121 partial</td><td class="has-text-centered">38.96 &plusmn; 3.17</td><td class="has-text-centered">58.90 &plusmn; 5.28</td><td class="has-text-centered">9.77 &plusmn; 3.47</td><td class="has-text-centered">38.30 &plusmn; 1.18</td></tr>
+                <tr><td>EfficientNet-B0 full</td><td class="has-text-centered">44.10 &plusmn; 1.21</td><td class="has-text-centered">80.99 &plusmn; 2.65</td><td class="has-text-centered">10.89 &plusmn; 2.21</td><td class="has-text-centered">42.59 &plusmn; 4.07</td></tr>
+                <tr><td>EfficientNet-B0 partial</td><td class="has-text-centered">35.68 &plusmn; 1.21</td><td class="has-text-centered">54.53 &plusmn; 2.11</td><td class="has-text-centered">1.80 &plusmn; 0.37</td><td class="has-text-centered">41.28 &plusmn; 1.19</td></tr>
+                <tr><td>DINOv2 full</td><td class="has-text-centered">32.67 &plusmn; 2.23</td><td class="has-text-centered">48.39 &plusmn; 2.39</td><td class="has-text-centered">24.10 &plusmn; 3.77</td><td class="has-text-centered">46.98 &plusmn; 2.08</td></tr>
+                <tr class="has-background-white-bis"><td><b>DINOv2 partial</b></td><td class="has-text-centered"><b>46.41 &plusmn; 1.56</b></td><td class="has-text-centered"><b>80.61 &plusmn; 1.18</b></td><td class="has-text-centered">14.78 &plusmn; 4.12</td><td class="has-text-centered"><b>46.65 &plusmn; 2.47</b></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="description has-text-centered">
+            Per-class future-year (2026) F1 for all eight conditions (mean&nbsp;&plusmn;&nbsp;SD over 10 seeds, %). Healthy is the easiest class in seven of eight conditions; <b>rice blast is the hardest in every one</b>, never exceeding 24.10 and falling to 1.80 for EfficientNet-B0 partial. Note also that DINOv2 <i>full</i> is the only condition where blast is not the worst class &mdash; it trades healthy-leaf accuracy for it &mdash; which is why it wins on blast F1 while losing badly on macro-F1. Seed variability stays small next to the temporal shift: the coefficient of variation for test macro-F1 runs from 1.26% (ResNet50 partial) to 4.41% (DenseNet121 partial), with DINOv2 partial at 2.81%, so its advantage does not rest on one lucky seed.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Per-class -->
+
+
+<!-- Takeaway -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">What survives repeated evaluation</h2>
+        <div class="content has-text-justified">
+          <p>
+            <b>The shift is real and it is large.</b> It is present in the images themselves &mdash; a 52.06% loss of structural similarity across the boundary against a 9.29% within-partition control &mdash; and it cut performance significantly in all eight conditions, with a mean gap of 43.91 macro-F1 points and mean retention of 48.28%. Under every architecture and strategy we tried, less than half of validation macro-F1 survived the move to future-year samples.
+          </p>
+          <p>
+            <b>Validation ranking does not find the robust model.</b> DINOv2 partial gave the best future-year macro-F1, the best retention, and the smallest gap while ranking fifth of eight on validation. Across the eight condition means, validation and test macro-F1 were not significantly associated at all (<i>p</i>&nbsp;=&nbsp;0.0714). Selecting a deployment model on same-period validation would have picked the wrong one.
+          </p>
+          <p>
+            <b>There is no universally better fine-tuning strategy.</b> Full fine-tuning won for all three CNNs and partial fine-tuning won for DINOv2, and the heterogeneity was itself significant (Friedman &chi;<sup>2</sup>&nbsp;=&nbsp;28.08, <i>W</i>&nbsp;=&nbsp;0.936). Reporting a single "full is better by X points" number would have averaged away the only structure in the result. The Grad-CAM analysis echoes the split: full fine-tuning refines CNN attention but reorganises DINOv2's.
+          </p>
+          <p>
+            <b>Rice blast remains the practical bottleneck.</b> Even the best configuration recovers only 9.17% of blast cases, with 72.73% absorbed by brown spot. The contribution here is the evaluation protocol &mdash; chronological separation, 10 seeds, pre-specified claims, and paired tests deciding which differences are real &mdash; more than any single winning architecture.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Takeaway -->
+
+
+<!-- Limitations -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Limitations</h2>
+        <div class="content has-text-left">
+          <ul>
+            <li><b>Publication year, not acquisition date.</b> Most public Bangladeshi rice datasets do not report verified acquisition dates, so publication year is used as a chronological proxy. The differences should be read as cross-year evaluation based on dataset release chronology, not verified acquisition chronology.</li>
+            <li><b>Year and source are entangled.</b> Because each year bin draws from one or two of the ten source repositories, the 2021&ndash;2025 versus 2026 split is partly a split by data source and institution. A source-held-out control within the historical pool is needed to separate a time effect from an ordinary cross-source domain shift.</li>
+            <li><b>Asymmetric validation.</b> The validation set is a random 15% stratified split of the same historical pool used for training, so it shares sources with training while the 2026 test set does not. This asymmetry likely inflates the reported gap relative to a source-independent validation set.</li>
+            <li><b>Seed-level, not population-level, inference.</b> Comparisons are paired across seeds, so the <i>p</i>-values and effect sizes say how consistently an effect reproduces across training runs of the same models on the same partitions &mdash; not how it varies across datasets, seasons, or regions. The very large <i>d<sub>z</sub></i> values follow from that design; the mean gap and its confidence interval are the better guide to practical magnitude.</li>
+            <li><b>Descriptive similarity metrics.</b> The SSIM and PSNR comparisons depend on the pairing procedure and are read only as a relative comparison across the three pair sets.</li>
+            <li><b>Four classes, public data only.</b> Extending to more diseases, more crop varieties, and prospectively collected longitudinal images with verified dates would test temporal generalization more severely than this corpus can.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Limitations -->
+
+
+<!--BibTeX -->
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <p><i>Status: accepted for presentation at the 3rd IEEE International Conference on Computing, Applications and Systems 2026 (9&ndash;10 October 2026); inclusion in IEEE Xplore follows presentation. The BibTeX below will be updated with page numbers and the DOI once the Xplore record is published.</i></p>
+      <pre><code>@inproceedings{islam2026temporal,
+  title     = {Leveraging Temporal Distribution Shifts for Rice Disease Detection},
+  author    = {Islam, Md. Radoan and Chakraborty, Sayantan and
+               Bhattacharjee, Ushashi and Roy, Tirtho},
+  booktitle = {Proceedings of the 3rd IEEE International Conference on
+               Computing, Applications and Systems},
+  year      = {2026},
+  publisher = {IEEE}
+}</code></pre>
+  </div>
+</section>
+
+
+<!-- Team -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width has-text-centered">
+        <h2 class="title is-3">
+          <span class="dvima">Team</span>
+        </h2>
+        <div class="columns is-multiline is-centered">
+
+          <div class="column is-one-fifth has-text-centered video-column">
+            <a href="https://github.com/radoan11103" target="_blank" style="border-bottom: none;">
+              <span class="image">
+                <img src="static/images/team/Radoan.svg" alt="Md. Radoan Islam" style="width: 90%; border-radius: 50%;" />
+              </span>
+              <span style="font-weight: bold;">Md. Radoan Islam</span>
+            </a>
+            <p class="team-links">
+              <a href="https://github.com/radoan11103" target="_blank"
+                 aria-label="Md. Radoan Islam on GitHub" style="border-bottom: none;">
+                <span class="icon"><i class="fab fa-github"></i></span>
+              </a>
+            </p>
+            <p class="eql-cntrb"><i>Equal contribution</i></p>
+          </div>
+
+          <div class="column is-one-fifth has-text-centered video-column">
+            <a href="https://www.linkedin.com/in/sayantan-chakraborty-1416p/" target="_blank" style="border-bottom: none;">
+              <span class="image">
+                <img src="static/images/team/Sayantan.png" alt="Sayantan Chakraborty" style="width: 90%; border-radius: 50%;" />
+              </span>
+              <span style="font-weight: bold;">Sayantan Chakraborty</span>
+            </a>
+            <p class="team-links">
+              <a href="https://www.linkedin.com/in/sayantan-chakraborty-1416p/" target="_blank"
+                 aria-label="Sayantan Chakraborty on LinkedIn" style="border-bottom: none;">
+                <span class="icon"><i class="fab fa-linkedin"></i></span>
+              </a>
+              <a href="https://scholar.google.com/citations?user=QfxvioMAAAAJ&amp;hl=en" target="_blank"
+                 aria-label="Sayantan Chakraborty on Google Scholar" style="border-bottom: none;">
+                <span class="icon"><i class="ai ai-google-scholar"></i></span>
+              </a>
+            </p>
+            <p class="eql-cntrb"><i>Equal contribution</i></p>
+          </div>
+
+          <div class="column is-one-fifth has-text-centered video-column">
+            <a href="https://www.linkedin.com/in/ushashi-bhattacharjee/" target="_blank" style="border-bottom: none;">
+              <span class="image">
+                <img src="static/images/team/Ushashi.png" alt="Ushashi Bhattacharjee" style="width: 90%; border-radius: 50%;" />
+              </span>
+              <span style="font-weight: bold;">Ushashi Bhattacharjee</span>
+            </a>
+            <p class="team-links">
+              <a href="https://www.linkedin.com/in/ushashi-bhattacharjee/" target="_blank"
+                 aria-label="Ushashi Bhattacharjee on LinkedIn" style="border-bottom: none;">
+                <span class="icon"><i class="fab fa-linkedin"></i></span>
+              </a>
+              <a href="https://scholar.google.com/citations?user=nE0JzCEAAAAJ&amp;hl=en" target="_blank"
+                 aria-label="Ushashi Bhattacharjee on Google Scholar" style="border-bottom: none;">
+                <span class="icon"><i class="ai ai-google-scholar"></i></span>
+              </a>
+            </p>
+          </div>
+
+          <div class="column is-one-fifth has-text-centered video-column">
+            <a href="https://www.linkedin.com/in/tirtho-roy-apon/" target="_blank" style="border-bottom: none;">
+              <span class="image">
+                <img src="static/images/team/Tirtho.png" alt="Tirtho Roy" style="width: 90%; border-radius: 50%;" />
+              </span>
+              <span style="font-weight: bold;">Tirtho Roy</span>
+            </a>
+            <p class="team-links">
+              <a href="https://www.linkedin.com/in/tirtho-roy-apon/" target="_blank"
+                 aria-label="Tirtho Roy on LinkedIn" style="border-bottom: none;">
+                <span class="icon"><i class="fab fa-linkedin"></i></span>
+              </a>
+            </p>
+            <p class="eql-cntrb"><i>Corresponding author</i></p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Team -->
+
+
+  <footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+
+          <p>
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+            You are free to borrow the source code of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  </body>
+  </html>
